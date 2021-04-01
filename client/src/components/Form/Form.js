@@ -17,7 +17,7 @@ const Form = ({ currentId, setCurrentId }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(post) setPostData(post); // double kill
+        if(post) setPostData(post); // double kill haha
     }, [post])
 
     const clear = () => {
