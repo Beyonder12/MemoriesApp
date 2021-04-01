@@ -17,25 +17,30 @@ const Form = ({ currentId, setCurrentId }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(post) setPostData(post);
+        if(post) setPostData(post); // double kill
     }, [post])
+
+    const clear = () => {
+        setCurrentId(null);
+        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: ''});
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if(currentId) {
             dispatch(updatePost(currentId, postData));
+            // clear();
         } else {
             dispatch(createPost(postData));
+            // clear();
         }
 
+        clear();//why the clear doesnt work
         
     }
 
-    const clear = () => {
-        setCurrentId(null);
-        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: ''});
-    }
+    
 
     return (
         <Paper className={classes.paper}>
